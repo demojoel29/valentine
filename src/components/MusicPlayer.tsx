@@ -11,7 +11,7 @@ const MusicPlayer: React.FC = () => {
     useEffect(() => {
         const audio = audioRef.current;
         if (!audio) return;
-
+        audio.volume = 0.4
         const updateProgress = () => {
             setProgress((audio.currentTime / audio.duration) * 100 || 0);
         };
@@ -40,13 +40,9 @@ const MusicPlayer: React.FC = () => {
     return (
         <div className="music-player">
             <audio ref={audioRef} src={MUSIC_SRC} preload="auto" />
-
-            {/* Botón Circular */}
             <button onClick={togglePlay} className="music-button">
                 {isPlaying ? <Pause size={18} /> : <Play size={18} />}
             </button>
-
-            {/* Barra de Progreso */}
             <div className="progress-bar">
                 <div className="progress" style={{ width: `${progress}%` }}></div>
             </div>
